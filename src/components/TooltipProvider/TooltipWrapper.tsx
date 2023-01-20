@@ -12,7 +12,7 @@ const TooltipWrapper = ({
   html,
   variant,
   offset,
-  wrapper,
+  wrapper = 'span',
   events,
   positionStrategy,
   delayShow,
@@ -20,6 +20,7 @@ const TooltipWrapper = ({
 }: ITooltipWrapper) => {
   const { attach, detach } = useTooltip(tooltipId)
   const anchorRef = useRef<HTMLElement | null>(null)
+  const Component = wrapper
 
   useEffect(() => {
     attach(anchorRef)
@@ -29,7 +30,7 @@ const TooltipWrapper = ({
   }, [])
 
   return (
-    <span
+    <Component
       ref={anchorRef}
       className={classNames('react-tooltip-wrapper', className)}
       data-tooltip-place={place}
@@ -44,7 +45,7 @@ const TooltipWrapper = ({
       data-tooltip-delay-hide={delayHide}
     >
       {children}
-    </span>
+    </Component>
   )
 }
 
