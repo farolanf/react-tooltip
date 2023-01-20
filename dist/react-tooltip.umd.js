@@ -175,6 +175,7 @@
 	    const anchorRef = react.useRef(null);
 	    const Component = wrapper;
 	    const setRef = (current) => {
+	        anchorRef.current = current;
 	        if (!ref)
 	            return;
 	        if (typeof ref === 'function') {
@@ -185,7 +186,6 @@
 	        }
 	    };
 	    react.useEffect(() => {
-	        setRef(anchorRef.current);
 	        attach(anchorRef);
 	        return () => {
 	            detach(anchorRef);

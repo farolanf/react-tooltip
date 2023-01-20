@@ -176,6 +176,7 @@ const TooltipWrapper = ({ tooltipId, children, className, place, content, html, 
     const anchorRef = react.useRef(null);
     const Component = wrapper;
     const setRef = (current) => {
+        anchorRef.current = current;
         if (!ref)
             return;
         if (typeof ref === 'function') {
@@ -186,7 +187,6 @@ const TooltipWrapper = ({ tooltipId, children, className, place, content, html, 
         }
     };
     react.useEffect(() => {
-        setRef(anchorRef.current);
         attach(anchorRef);
         return () => {
             detach(anchorRef);

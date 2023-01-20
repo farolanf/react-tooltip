@@ -27,6 +27,7 @@ const TooltipWrapper = (
   const Component = wrapper
 
   const setRef = (current: typeof anchorRef.current) => {
+    anchorRef.current = current
     if (!ref) return
     if (typeof ref === 'function') {
       ref(current)
@@ -37,7 +38,6 @@ const TooltipWrapper = (
   }
 
   useEffect(() => {
-    setRef(anchorRef.current)
     attach(anchorRef)
     return () => {
       detach(anchorRef)
