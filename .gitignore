@@ -26,7 +26,6 @@
 
 ## building
 /build/
-/dist/
 
 ## other
 yarn-error.log
