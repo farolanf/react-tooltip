@@ -17,6 +17,7 @@ const TooltipWrapper = ({
   positionStrategy,
   delayShow,
   delayHide,
+  ...restProps
 }: ITooltipWrapper) => {
   const { attach, detach } = useTooltip(tooltipId)
   const anchorRef = useRef<HTMLElement | null>(null)
@@ -43,6 +44,7 @@ const TooltipWrapper = ({
       data-tooltip-position-strategy={positionStrategy}
       data-tooltip-delay-show={delayShow}
       data-tooltip-delay-hide={delayHide}
+      {...restProps}
     >
       {children}
     </Component>
