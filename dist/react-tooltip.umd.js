@@ -170,18 +170,30 @@
 	    return react.useContext(TooltipContext).getTooltipData(tooltipId);
 	}
 
-	const TooltipWrapper = ({ tooltipId, children, className, place, content, html, variant, offset, wrapper = 'span', events, positionStrategy, delayShow, delayHide, ...restProps }) => {
+	const TooltipWrapper = ({ tooltipId, children, className, place, content, html, variant, offset, wrapper = 'span', events, positionStrategy, delayShow, delayHide, ...restProps }, ref) => {
 	    const { attach, detach } = useTooltip(tooltipId);
 	    const anchorRef = react.useRef(null);
 	    const Component = wrapper;
+	    const setRef = (current) => {
+	        if (!ref)
+	            return;
+	        if (typeof ref === 'function') {
+	            ref(current);
+	        }
+	        else if ('current' in ref) {
+	            ref.current = current;
+	        }
+	    };
 	    react.useEffect(() => {
+	        setRef(anchorRef.current);
 	        attach(anchorRef);
 	        return () => {
 	            detach(anchorRef);
 	        };
 	    }, []);
-	    return (jsxRuntime.jsx(Component, { ref: anchorRef, className: classNames('react-tooltip-wrapper', className), "data-tooltip-place": place, "data-tooltip-content": content, "data-tooltip-html": html, "data-tooltip-variant": variant, "data-tooltip-offset": offset, "data-tooltip-wrapper": wrapper, "data-tooltip-events": events, "data-tooltip-position-strategy": positionStrategy, "data-tooltip-delay-show": delayShow, "data-tooltip-delay-hide": delayHide, ...restProps, children: children }));
+	    return (jsxRuntime.jsx(Component, { ref: setRef, className: classNames('react-tooltip-wrapper', className), "data-tooltip-place": place, "data-tooltip-content": content, "data-tooltip-html": html, "data-tooltip-variant": variant, "data-tooltip-offset": offset, "data-tooltip-wrapper": wrapper, "data-tooltip-events": events, "data-tooltip-position-strategy": positionStrategy, "data-tooltip-delay-show": delayShow, "data-tooltip-delay-hide": delayHide, ...restProps, children: children }));
 	};
+	var TooltipWrapper$1 = react.forwardRef(TooltipWrapper);
 
 	function getSide(placement) {
 	  return placement.split('-')[0];
@@ -1857,7 +1869,7 @@
 
 	exports.Tooltip = TooltipController;
 	exports.TooltipProvider = TooltipProvider;
-	exports.TooltipWrapper = TooltipWrapper;
+	exports.TooltipWrapper = TooltipWrapper$1;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 

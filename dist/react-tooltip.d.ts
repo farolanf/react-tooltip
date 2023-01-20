@@ -1,4 +1,5 @@
-import React, { ElementType, ReactNode, CSSProperties, PropsWithChildren } from 'react';
+import * as react from 'react';
+import react__default, { ElementType, ReactNode, CSSProperties, PropsWithChildren } from 'react';
 
 type PlacesType = 'top' | 'right' | 'bottom' | 'left'
 
@@ -92,8 +93,8 @@ interface ITooltipWrapper {
 
 declare const TooltipController: ({ id, anchorId, content, html, className, classNameArrow, variant, place, offset, wrapper, children, events, positionStrategy, delayShow, delayHide, float, noArrow, clickable, style, position, isOpen, setIsOpen, afterShow, afterHide, }: ITooltipController) => JSX.Element;
 
-declare const TooltipProvider: React.FC<PropsWithChildren>;
+declare const TooltipProvider: react__default.FC<PropsWithChildren>;
 
-declare const TooltipWrapper: ({ tooltipId, children, className, place, content, html, variant, offset, wrapper, events, positionStrategy, delayShow, delayHide, ...restProps }: ITooltipWrapper) => JSX.Element;
+declare const _default: react.ForwardRefExoticComponent<ITooltipWrapper & react.RefAttributes<HTMLElement>>;
 
-export { ChildrenType, DataAttribute, EventsType, IPosition, ITooltipController as ITooltip, ITooltipWrapper, PlacesType, PositionStrategy, TooltipController as Tooltip, TooltipProvider, TooltipWrapper, VariantType, WrapperType };
+export { ChildrenType, DataAttribute, EventsType, IPosition, ITooltipController as ITooltip, ITooltipWrapper, PlacesType, PositionStrategy, TooltipController as Tooltip, TooltipProvider, _default as TooltipWrapper, VariantType, WrapperType };
